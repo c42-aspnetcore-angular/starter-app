@@ -8,6 +8,8 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 
+using starter_app.Controllers.LogProviders.FileLog;
+
 namespace starter_app
 {
     public class Program
@@ -23,6 +25,7 @@ namespace starter_app
                     logBuilder.AddConfiguration(hostingContext.Configuration.GetSection("logging"));
                     logBuilder.AddConsole();
                     logBuilder.AddDebug();
+                    logBuilder.AddFile(LogLevel.Debug);
                 })
                 .UseStartup<Startup>()
                 .Build();

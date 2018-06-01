@@ -25,7 +25,7 @@ namespace starter_app.Controllers
         [HttpGet("[action]")]
         public IEnumerable<WeatherForecast> WeatherForecasts()
         {
-            _logger.LogInformation("WeatherForecasts method called!!");
+            //_logger.LogInformation("WeatherForecasts method called!!");
 
             var rng = new Random();
             var forecasts =  Enumerable.Range(1, 5).Select(index => new WeatherForecast
@@ -35,7 +35,8 @@ namespace starter_app.Controllers
                 Summary = Summaries[rng.Next(Summaries.Length)]
             });
 
-            _logger.LogInformation("Forecasts", forecasts);
+            _logger.LogInformation("Forecasts", forecasts.ToList().FirstOrDefault());
+            _logger.Log(LogLevel.Debug, new EventId(), forecasts.ToArray()[0], null, null);
             
             return forecasts;
         }
