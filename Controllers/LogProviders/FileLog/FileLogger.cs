@@ -35,7 +35,7 @@ namespace starter_app.Controllers.LogProviders.FileLog
             {
                 var now = DateTime.UtcNow;
                 var today = now.ToString("yyyy-MM-dd");
-                var fileName = $"{this._categoryName}_{today}.log";
+                var fileName = $"C:\\temp\\{this._categoryName}_{today}.log";
 
                 var sb = new StringBuilder();
                 var formattedValues = state as FormattedLogValues;
@@ -49,7 +49,14 @@ namespace starter_app.Controllers.LogProviders.FileLog
                 //var message = formatter(state, exception);
 
                 //File.AppendAllText(fileName, $"{message}\n");
-                File.AppendAllText(fileName, $"{sb.ToString()}\n");
+                try
+                {
+                    File.AppendAllText(fileName, $"{sb.ToString()}\n");   
+                }
+                catch
+                {
+                    // ignore errors for test
+                }
             }
         }
     }

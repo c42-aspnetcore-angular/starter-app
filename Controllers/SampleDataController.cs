@@ -35,8 +35,8 @@ namespace starter_app.Controllers
                 Summary = Summaries[rng.Next(Summaries.Length)]
             });
 
-            _logger.LogInformation("Forecasts", forecasts.ToList().FirstOrDefault());
-            _logger.Log(LogLevel.Debug, new EventId(), forecasts.ToArray()[0], null, null);
+            _logger.LogInformation("Logging forecasts object - {@forecast}", forecasts.ToList().FirstOrDefault());
+            // _logger.Log(LogLevel.Debug, new EventId(), forecasts.ToArray()[0], null, null);
             
             return forecasts;
         }
